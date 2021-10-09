@@ -1,4 +1,4 @@
-package laboratory3;
+package laboratory3.task1;
 
 public class Main {
 
