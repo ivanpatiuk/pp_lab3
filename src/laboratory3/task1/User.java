@@ -63,7 +63,7 @@ public class User {
                     | !email.matches("[a-zA-Z0-9]{4,20}@[a-z]{1,5}\\.[a-z]{1,3}") | age <= 0 | age > 200 |
                     !address.getCountry().matches("[A-Z][a-z]+") |
                     !address.getCity().matches("[A-Z][a-z]+") |
-                    !address.getStreet().matches("[A-Z][a-z]+"))
+                    !address.getStreet().matches("[A-Z][a-z]+( [A-Z][a-z]+)?"))
                 throw new UncheckedException(ErrorCode.ERROR_400);
             System.out.println("Successful validation");
         } catch (UncheckedException e){
