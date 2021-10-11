@@ -5,31 +5,35 @@ import java.util.Scanner;
 
 public class MyClass implements AutoCloseable{
     private String fileName;
+    FileWriter writer;
+    Scanner scanner;
 
     public MyClass(){};
-    public MyClass(String fileName){
+    public MyClass(String fileName) throws IOException {
         this.fileName = fileName;
+        writer = new FileWriter(fileName, false);
+        scanner = new Scanner(new File(fileName));
     }
     public void read() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File(fileName));
         while (scanner.hasNext()) {
             System.out.println(scanner.nextLine());
         }
     }
     public void addSomeData() throws IOException {
-        FileWriter writer = new FileWriter(fileName, false);
         String line = null;
+        Scanner in = new Scanner(System.in);
         while(true){
-            Scanner in = new Scanner(System.in);
             line = in.nextLine();
             if(line.equals("exit"))
                 break;
             writer.write(line);
         }
-        writer.close();
+        in.close();
     }
     @Override
-    public void close(){
+    public void close() throws IOException {
+        writer.close();
+        scanner.close();
         System.out.println("Closed");
     }
 }
