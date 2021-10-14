@@ -5,8 +5,8 @@ import java.util.Scanner;
 
 public class MyClass implements AutoCloseable{
     private String fileName;
-    FileWriter writer;
-    Scanner scanner;
+    private FileWriter writer;
+    private Scanner scanner;
 
     public MyClass(){};
     public MyClass(String fileName) throws IOException {

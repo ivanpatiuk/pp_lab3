@@ -1,6 +1,6 @@
 package laboratory3.task1;
 
-public class UncheckedException extends Exception {
+public class UncheckedException extends RuntimeException {
     private ErrorCode error;
 
     public UncheckedException(){}

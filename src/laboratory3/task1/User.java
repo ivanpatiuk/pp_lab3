@@ -57,19 +57,16 @@ public class User {
         this.address = address;
     }
 
-    public void validate(){
-        try{
-            if (!firstName.matches("[a-zA-Z]+") | !lastName.matches("[a-zA-Z]+")
-                    | !email.matches("[a-zA-Z0-9]{4,20}@[a-z]{1,5}\\.[a-z]{1,3}") | age <= 0 | age > 200 |
-                    !address.getCountry().matches("[A-Z][a-z]+") |
-                    !address.getCity().matches("[A-Z][a-z]+") |
-                    !address.getStreet().matches("[A-Z][a-z]+( [A-Z][a-z]+)?"))
-                throw new UncheckedException(ErrorCode.ERROR_400);
-            System.out.println("Successful validation");
-        } catch (UncheckedException e){
-            System.out.println(e.getMessage());
-        } catch (NullPointerException e){
-            System.out.println(ErrorCode.ERROR_400 + "; Not initialized field");
-        }
+    public void validate() {
+        if (firstName == null || lastName == null || email == null ||
+                address == null || age == 0)
+            throw new UncheckedException(ErrorCode.ERROR_400);
+        if (!firstName.matches("[a-zA-Z]+") | !lastName.matches("[a-zA-Z]+")
+                | !email.matches("[a-zA-Z0-9]{4,20}@[a-z]{1,5}\\.[a-z]{1,3}") | age <= 0 | age > 200 |
+                !address.getCountry().matches("[A-Z][a-z]+") |
+                !address.getCity().matches("[A-Z][a-z]+") |
+                !address.getStreet().matches("[A-Z][a-z]+( [A-Z][a-z]+)?"))
+            throw new UncheckedException(ErrorCode.ERROR_400);
+        System.out.println("Successful validation");
     }
 }
