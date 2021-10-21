@@ -18,6 +18,7 @@ public class MyClass implements AutoCloseable{
         while (scanner.hasNext()) {
             System.out.println(scanner.nextLine());
         }
+        scanner.close();
     }
     public void addSomeData() throws IOException {
         String line = null;
@@ -28,6 +29,7 @@ public class MyClass implements AutoCloseable{
                 break;
             writer.write(line);
         }
+        writer.close();
         in.close();
     }
     @Override

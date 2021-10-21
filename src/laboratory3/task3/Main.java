@@ -26,23 +26,16 @@ public class Main {
         System.out.println();
     }
     public static void printEnglishMarks(final List<StudentV2> list){
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!РОБОЧА ВЕРСІЯ!!!!!!!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!РОБОЧА ВЕРСІЯ!!!!!!!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        System.out.println("English marks: " + (list.stream()
-                .filter(student -> student.getSubjects().getSubject().keySet().contains(Subject.English))
-                .map(student-> student.getSubjects().getSubject().get(Subject.English).getMark())
-                .collect(Collectors.toSet()))+"\n");
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        // !!!!!!!!!!!НЕ РОБОЧА ЧЕРЕЗ FLATMAP!!!!!!!!!!!!
-        // !!!!!!!!!!!НЕ РОБОЧА ЧЕРЕЗ FLATMAP!!!!!!!!!!!!
-        // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//        System.out.println("English marks: " + (list.stream()
+//                .filter(student -> student.getSubjects().getSubject().keySet().contains(Subject.English))
+//                .map(student-> student.getSubjects().getSubject().get(Subject.English).getMark())
+//                .collect(Collectors.toSet()))+"\n");
         System.out.println("English marks: " + (list.stream()
                 .distinct()
-                .flatMap(student -> student.getSubjects().getSubject().entrySet())
-                .filter(entry -> ...).map(entry -> ...).collect(Collectors.toSet()))+"\n");
-
+                .flatMap(subjectMarkMap -> subjectMarkMap.getSubjects().getSubject().entrySet().stream())
+                .filter(entry -> entry.getKey().equals(Subject.English))
+                .map(entry -> entry.getValue().getMark())
+                .collect(Collectors.toSet()))+"\n");
     }
     public static List<StudentV2> sort(final List<StudentV2> list){
         return list.stream().sorted(Comparator.comparing(Student::getName)
@@ -56,9 +49,12 @@ public class Main {
                         mapToInt(Mark::getMark).average().getAsDouble()))
         .get();
     }
-//    public static String printSurnames(final List<SimpleStudent> list){
-//        return list.stream().map(student -> student.getSurname()+"-").toString();
-//    }
+    public static String printSurnames(final List<SimpleStudent> list){
+        return list.stream()
+                .map(e -> e.getSurname())
+                .distinct()
+                .reduce((s1,s2)->s1+"-"+s2).get();
+    }
 
     public static void main(String[] args) {
         List<StudentV2> list = new ArrayList<>();
@@ -109,6 +105,6 @@ public class Main {
 
         // Написати метод який буде повертати прізвища усіх студентів через
         //дефіс.
-//        System.out.println(printSurnames(list2));
+        System.out.println(printSurnames(list2));
     }
 }
