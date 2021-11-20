@@ -1,7 +1,7 @@
-package laboratory3.task3.task4_package;
+package laboratory3.task3.task3_package;
 ;
-import laboratory3.task3.task3_package.Student;
-import laboratory3.task3.task3_package.Subjects;
+import laboratory3.task3.lab2_task3_4_package.Student;
+import laboratory3.task3.lab2_task3_4_package.Subjects;
 
 public class StudentV2 extends Student {
     private final int id;

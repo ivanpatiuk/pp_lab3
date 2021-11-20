@@ -5,21 +5,13 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        try(MyClass myClass = new MyClass("file.txt")) {
+        try (MyClass myClass = new MyClass("file.txt")) {
             myClass.addSomeData();
-        } catch (FileNotFoundException e){
-            e.printStackTrace();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-        try(MyClass myClass = new MyClass("file.txt")) {
             myClass.read();
-        } catch (FileNotFoundException e){
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 }

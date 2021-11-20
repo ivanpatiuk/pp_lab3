@@ -1,7 +1,7 @@
 package laboratory3.task3;
 
+import laboratory3.task3.lab2_task3_4_package.*;
 import laboratory3.task3.task3_package.*;
-import laboratory3.task3.task4_package.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -51,7 +51,7 @@ public class Main {
     }
     public static String printSurnames(final List<SimpleStudent> list){
         return list.stream()
-                .map(e -> e.getSurname())
+                .map(SimpleStudent::getSurname)
                 .distinct()
                 .reduce((s1,s2)->s1+"-"+s2).get();
     }
